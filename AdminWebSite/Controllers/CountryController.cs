@@ -17,7 +17,7 @@ namespace AdminWebSite.Controllers
             _context = new EFContext();
         }
         // GET: Country
-        public ActionResult Index()
+        public ActionResult Index()//прийнято щоб вертав список всього що є
         {
             List<CountryViewModel> model;
             model = _context.Countries.Select(c=>new CountryViewModel {
@@ -47,6 +47,29 @@ namespace AdminWebSite.Controllers
             };
             _context.Countries.Add(country);
             _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var country = _context.Countries.SingleOrDefault(x => x.Id == id);
+            CountryEditViewModel model = new CountryEditViewModel();
+            model.Id = id;
+            model.Name = country.Name;
+            model.Priority = country.Priority;
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult Edit(CountryEditViewModel model)
+        {
+            Country searchCountry=_context.Countries.SingleOrDefault(x => x.Id == model.Id);
+            if (searchCountry != null)
+            {
+                //old.DateCreate = DateTime.Now;
+                searchCountry.Name = model.Name;
+                searchCountry.Priority = model.Priority;
+                _context.SaveChanges();
+            }
             return RedirectToAction("Index");
         }
     }

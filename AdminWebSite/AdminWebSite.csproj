@@ -152,6 +152,7 @@
     <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\EFContext.cs" />
+    <Compile Include="DAL\Entities\City.cs" />
     <Compile Include="DAL\Entities\Country.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -159,6 +160,10 @@
     <Compile Include="Migrations\201710021645434_Create Table Countries.cs" />
     <Compile Include="Migrations\201710021645434_Create Table Countries.Designer.cs">
       <DependentUpon>201710021645434_Create Table Countries.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710031720157_Add table cities.cs" />
+    <Compile Include="Migrations\201710031720157_Add table cities.Designer.cs">
+      <DependentUpon>201710031720157_Add table cities.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CountryViewModel.cs" />
@@ -220,6 +225,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Country\Index.cshtml" />
     <Content Include="Views\Country\Create.cshtml" />
+    <Content Include="Views\Country\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -241,6 +247,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201710021645434_Create Table Countries.resx">
       <DependentUpon>201710021645434_Create Table Countries.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710031720157_Add table cities.resx">
+      <DependentUpon>201710031720157_Add table cities.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

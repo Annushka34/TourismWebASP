@@ -13,5 +13,6 @@ namespace AdminWebSite.DAL
         {
         }
         public DbSet <Country> Countries  { get; set; }
+        public DbSet<City> Cities { get; set; }
     }
 }
