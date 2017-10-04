@@ -1,17 +1,17 @@
 ﻿@model AdminWebSite.Models.CityCreateViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Створення міста";
 }
 
-<h2>Create</h2>
+<h2>Створити місто</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>CityCreateViewModel</h4>
+        <h4>Заповніть дані для створення міста</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">

@@ -38,12 +38,9 @@
                     </li>
                     <li>
                         <a class="menulinks @((ViewBag.MenuCity!=null)?"active":" ")" href="@Url.Action("Index","City")">City</a>
-
                         @*@Html.ActionLink("City", "Index","City",null,new { @class="menulinks"})@*//однакове з попереднім*@
                     </li>
                     <li><a class="menulinks active" id="TourLink" Addid="defaultOpen">Add new tour</a></li>
-                    <li><a class="menulinks" id="CountryLink">Country</a></li>
-                    <li><a class="menulinks" id="TownLink">Town</a></li>
                     <li><a class="menulinks" id="HotelLink">Hotel</a></li>
                 </ul>
             </div>
