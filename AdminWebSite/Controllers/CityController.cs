@@ -71,5 +71,68 @@ namespace AdminWebSite.Controllers
                 return View(model);
             }
         }
+        public ActionResult Edit(int id)
+        {
+            var city = _context.Cities.SingleOrDefault(x => x.Id == id);
+            CityEditViewModel model = new CityEditViewModel();
+            model.Id = id;
+            model.Name = city.Name;
+            model.Priority = city.Priority;
+            model.CountryId = city.CountryId;
+            model.Countries = _context.Countries.Select(x => new SelectItemViewModel
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult Edit(CityEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                City searchCity = _context.Cities.SingleOrDefault(x => x.Id == model.Id);
+                if (searchCity != null)
+                {
+                    //old.DateCreate = DateTime.Now;
+                    searchCity.Name = model.Name;
+                    searchCity.Priority = model.Priority;
+                    searchCity.CountryId = model.CountryId;
+                    _context.SaveChanges();
+                }
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ModelState.AddModelError("", "І тут затупив:-)))");
+                model = new CityEditViewModel();
+                model.Countries = _context.Countries.Select(x => new SelectItemViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                }).ToList();
+                return View(model);
+            }
+        }
+        public ActionResult Delete(int id)
+        {
+            var city = _context.Cities.SingleOrDefault(x => x.Id == id);
+            if (city != null)
+            {
+                SelectItemViewModel model = new SelectItemViewModel();
+                model.Id = id;
+                model.Name = city.Name;
+                return View(model);
+            }
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public ActionResult Delete(SelectItemViewModel model)
+        {
+            var city = _context.Cities.SingleOrDefault(x => x.Id == model.Id);
+            _context.Cities.Remove(city);
+            _context.SaveChanges();
+            return View(model);
+        }
     }
 }

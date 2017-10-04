@@ -43,7 +43,7 @@ namespace AdminWebSite.Models
         [Range(1, short.MaxValue)]
         [Display(Name = "Пріорітет")]
         public int Priority { get; set; }
-        //[Required(ErrorMessage = "Поле є обовязковим")]
+        [Required(ErrorMessage = "Поле є обовязковим")]
         [Display(Name = "Країна")]
         public int CountryId { get; set; }
         public List<SelectItemViewModel> Countries { get; set; }
