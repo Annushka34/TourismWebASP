@@ -33,6 +33,12 @@
         <div class="col-2 col-m-3 leftpanel">
             <div class="content">
                 <ul class="sidemenu">
+                    <li>
+                        <a class="menulinks" href="@Url.Action("Index","Country")">Country</a>
+                    </li>
+                    <li>
+                        @Html.ActionLink("City", "Index","City",null,new { @class="menulinks"})@*//однакове з попереднім*@
+                    </li>
                     <li><a class="menulinks active" id="TourLink" Addid="defaultOpen">Add new tour</a></li>
                     <li><a class="menulinks" id="CountryLink">Country</a></li>
                     <li><a class="menulinks" id="TownLink">Town</a></li>
@@ -41,7 +47,7 @@
             </div>
 
         </div>
-        <div class="col-10 col-m-9 rightpanel">
+        @*<div class="col-10 col-m-9 rightpanel">
             <div class="adminMenu">
                 <h2>Admin menu</h2>
                 <div id="addNewTourTab" class="menucontent">
@@ -83,10 +89,6 @@
                             <br>
                             <input id="inputPrice" type="text">
                         </div>
-                        <!-- <div class="form-group col-8 col-m-12 col-s-12">
-                          <label for="comment">Description:</label>
-                          <textarea class="form-control" rows="5" id="comment"></textarea>
-                        </div> -->
                         <div id="selectBox" class="col-8 col-m-12 col-s-12">
                             <label for="">Description</label>
                             <br>
@@ -155,7 +157,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
         <div class="col-10 col-m-12 dataBody" id="dataBody">
             @RenderBody()
         </div>
