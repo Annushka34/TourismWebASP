@@ -19,6 +19,7 @@ namespace AdminWebSite.Controllers
         // GET: Country
         public ActionResult Index()//прийнято щоб вертав список всього що є
         {
+            ViewBag.MenuCountry = true;
             List<CountryViewModel> model;
             model = _context.Countries.Select(c=>new CountryViewModel {
                 Id=c.Id,
