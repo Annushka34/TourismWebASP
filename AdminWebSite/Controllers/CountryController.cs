@@ -68,15 +68,20 @@ namespace AdminWebSite.Controllers
         [HttpPost]
         public ActionResult Edit(CountryEditViewModel model)
         {
-            Country searchCountry=_context.Countries.SingleOrDefault(x => x.Id == model.Id);
-            if (searchCountry != null)
+            if (ModelState.IsValid)
             {
-                //old.DateCreate = DateTime.Now;
-                searchCountry.Name = model.Name;
-                searchCountry.Priority = model.Priority;
-                _context.SaveChanges();
+                Country searchCountry = _context.Countries.SingleOrDefault(x => x.Id == model.Id);
+                if (searchCountry != null)
+                {
+                    //old.DateCreate = DateTime.Now;
+                    searchCountry.Name = model.Name;
+                    searchCountry.Priority = model.Priority;
+                    _context.SaveChanges();
+                }
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            ModelState.AddModelError("", "І тут затупив:-)))");
+            return View(model);
         }
     }
 }

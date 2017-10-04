@@ -12,13 +12,13 @@
 
     <div class="form-horizontal">
         <h4>Заповніть дані для створення міста</h4>
+        @Html.ValidationSummary(true) @*true - помилки які без ключа false - всі помилки*@
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Name)
             </div>
         </div>
 
@@ -26,7 +26,7 @@
             @Html.LabelFor(model => model.Priority, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Priority, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Priority, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Priority)
             </div>
         </div>
 
@@ -38,7 +38,7 @@
                                         Countries.Select(c => new SelectListItem
                                         { Value = c.Id.ToString(), Text = c.Name }),
                                         htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+                @*@Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })*@
             </div>
         </div>
 

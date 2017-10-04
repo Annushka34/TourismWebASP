@@ -7,13 +7,13 @@ namespace AdminWebSite.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class CreateTableCountries : IMigrationMetadata
+    public sealed partial class Startfromscratch : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateTableCountries));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Startfromscratch));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710021645434_Create Table Countries"; }
+            get { return "201710042020307_Start from scratch"; }
         }
         
         string IMigrationMetadata.Source

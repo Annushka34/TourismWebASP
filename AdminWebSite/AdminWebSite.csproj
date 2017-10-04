@@ -158,13 +158,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201710021645434_Create Table Countries.cs" />
-    <Compile Include="Migrations\201710021645434_Create Table Countries.Designer.cs">
-      <DependentUpon>201710021645434_Create Table Countries.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710031720157_Add table cities.cs" />
-    <Compile Include="Migrations\201710031720157_Add table cities.Designer.cs">
-      <DependentUpon>201710031720157_Add table cities.cs</DependentUpon>
+    <Compile Include="Migrations\201710042020307_Start from scratch.cs" />
+    <Compile Include="Migrations\201710042020307_Start from scratch.Designer.cs">
+      <DependentUpon>201710042020307_Start from scratch.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CityViewModel.cs" />
@@ -250,11 +246,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710021645434_Create Table Countries.resx">
-      <DependentUpon>201710021645434_Create Table Countries.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710031720157_Add table cities.resx">
-      <DependentUpon>201710031720157_Add table cities.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710042020307_Start from scratch.resx">
+      <DependentUpon>201710042020307_Start from scratch.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

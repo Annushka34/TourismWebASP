@@ -34,27 +34,42 @@ namespace AdminWebSite.Controllers
         }
         public ActionResult Create()
         {
-            CityCreateViewModel model = new CityCreateViewModel();
-            model.Countries = _context.Countries.Select(x => new SelectItemViewModel
-            {
-                Id = x.Id,
-                Name = x.Name
-            }).ToList();
-            return View(model);
+                CityCreateViewModel model = new CityCreateViewModel();
+                model.Countries = _context.Countries.Select(x => new SelectItemViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                }).ToList();
+                return View(model);
         }
         [HttpPost]
         public ActionResult Create(CityCreateViewModel model)
         {
-            City city = new City
+            if (ModelState.IsValid)
             {
-                Name = model.Name,
-                DateCreate = DateTime.Now,
-                Priority = model.Priority,
-                CountryId = model.CountryId
-            };
-            _context.Cities.Add(city);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
+                City city = new City
+                {
+                    Name = model.Name,
+                    DateCreate = DateTime.Now,
+                    Priority = model.Priority,
+                    CountryId = model.CountryId
+                };
+                _context.Cities.Add(city);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ModelState.AddModelError("", "З містами теж якась лажа....");
+                //return RedirectToAction("Create");
+                model = new CityCreateViewModel();
+                model.Countries = _context.Countries.Select(x => new SelectItemViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                }).ToList();
+                return View(model);
+            }
         }
     }
 }

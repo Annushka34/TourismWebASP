@@ -21,10 +21,29 @@ namespace AdminWebSite.Models
     }
     public class CityCreateViewModel
     {
+        [Required(ErrorMessage = "Поле є обовязковим")]
         [Display(Name = "Назва")]
         public string Name { get; set; }
+        [Required(ErrorMessage = "Поле є обовязковим")]
+        [Range(1, short.MaxValue)]
         [Display(Name = "Пріорітет")]
         public int Priority { get; set; }
+        //[Required(ErrorMessage = "Поле є обовязковим")]
+        [Display(Name = "Країна")]
+        public int CountryId { get; set; }
+        public List<SelectItemViewModel> Countries { get; set; }
+    }
+    public class CityEditViewModel
+    {
+        public int Id { get; set; }
+        [Required(ErrorMessage = "Поле є обовязковим")]
+        [Display(Name = "Назва")]
+        public string Name { get; set; }
+        [Required(ErrorMessage = "Поле є обовязковим")]
+        [Range(1, short.MaxValue)]
+        [Display(Name = "Пріорітет")]
+        public int Priority { get; set; }
+        //[Required(ErrorMessage = "Поле є обовязковим")]
         [Display(Name = "Країна")]
         public int CountryId { get; set; }
         public List<SelectItemViewModel> Countries { get; set; }
