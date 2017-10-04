@@ -17,6 +17,7 @@ namespace AdminWebSite.Controllers
         {
             _context = new EFContext();
             ViewBag.MenuCity = true;
+            ViewBag.DelCity = false;
         }
         // GET: City
         public ActionResult Index()
@@ -132,6 +133,7 @@ namespace AdminWebSite.Controllers
             var city = _context.Cities.SingleOrDefault(x => x.Id == model.Id);
             _context.Cities.Remove(city);
             _context.SaveChanges();
+            ViewBag.DelCity = true;
             return View(model);
         }
     }
