@@ -40,15 +40,20 @@ namespace AdminWebSite.Controllers
         [HttpPost]
         public ActionResult Create(CountryCreateViewModel model)
         {
-            Country country = new Country
+            if (ModelState.IsValid)
             {
-                DateCreate = DateTime.Now,
-                Name = model.Name,
-                Priority = model.Priority
-            };
-            _context.Countries.Add(country);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
+                Country country = new Country
+                {
+                    DateCreate = DateTime.Now,
+                    Name = model.Name,
+                    Priority = model.Priority
+                };
+                _context.Countries.Add(country);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ModelState.AddModelError("", "Дружок не тупи");
+            return View(model);
         }
 
         public ActionResult Edit(int id)
