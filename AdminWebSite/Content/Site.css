@@ -635,4 +635,10 @@ tr:nth-child(even) {
     #userInputCountry, #userInputTown, #userInputHotel {
         width: 270px;
     }
+
+   
+}
+.blue-text {
+    color: blue;
+    font-style: italic;
 }

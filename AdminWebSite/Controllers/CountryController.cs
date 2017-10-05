@@ -98,9 +98,12 @@ namespace AdminWebSite.Controllers
             Country country = _context.Countries.SingleOrDefault(x => x.Id == id);
             if(country!=null)
             {                
-                SelectItemViewModel model = new SelectItemViewModel();
+                CountryDelViewModel model = new CountryDelViewModel();
                 model.Id = id;
                 model.Name = country.Name;
+                var c = country.Cities.Select(city=>new SelectItemViewModel
+                { Id = city.Id, Name = city.Name });
+                model.Cities = c.ToList();
                 return View(model);
             }
             return RedirectToAction("Delete"); 

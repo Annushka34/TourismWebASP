@@ -41,4 +41,15 @@ namespace AdminWebSite.Models
         [Display(Name = "Пріорітет")]
         public int Priority { get; set; }
     }
+    public class CountryDelViewModel
+    {
+        [Required]
+        [Display(Name = "Код країни")]
+        public int Id { get; set; }
+        [Required(ErrorMessage = "Назва країни не доступна")]
+        [Display(Name = "Назва")]
+        public string Name { get; set; }
+        [Display(Name ="Cities")]
+        public List<SelectItemViewModel> Cities { get; set; }
+    }
 }
