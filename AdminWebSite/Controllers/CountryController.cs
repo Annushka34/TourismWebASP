@@ -42,6 +42,12 @@ namespace AdminWebSite.Controllers
         {
             if (ModelState.IsValid)
             {
+                Country isFind = _context.Countries.SingleOrDefault(x => x.Name == model.Name);
+                if(isFind!=null)
+                {
+                    ModelState.AddModelError("", "Дві країни з однаковою назвою...Знову щось пішло не так)))");
+                    return View(model);
+                }
                 Country country = new Country
                 {
                     DateCreate = DateTime.Now,
@@ -59,11 +65,15 @@ namespace AdminWebSite.Controllers
         public ActionResult Edit(int id)
         {
             var country = _context.Countries.SingleOrDefault(x => x.Id == id);
-            CountryEditViewModel model = new CountryEditViewModel();
-            model.Id = id;
-            model.Name = country.Name;
-            model.Priority = country.Priority;
-            return View(model);
+            if (country != null)
+            {
+                CountryEditViewModel model = new CountryEditViewModel();
+                model.Id = id;
+                model.Name = country.Name;
+                model.Priority = country.Priority;
+                return View(model);
+            }
+            return RedirectToAction("Edit");
         }
         [HttpPost]
         public ActionResult Edit(CountryEditViewModel model)
@@ -82,6 +92,30 @@ namespace AdminWebSite.Controllers
             }
             ModelState.AddModelError("", "І тут затупив:-)))");
             return View(model);
+        }
+        public ActionResult Delete(int id)
+        {
+            Country country = _context.Countries.SingleOrDefault(x => x.Id == id);
+            if(country!=null)
+            {                
+                SelectItemViewModel model = new SelectItemViewModel();
+                model.Id = id;
+                model.Name = country.Name;
+                return View(model);
+            }
+            return RedirectToAction("Delete"); 
+        }
+        [HttpPost]
+        public ActionResult Delete(SelectItemViewModel model)
+        {
+            Country country = _context.Countries.SingleOrDefault(x => x.Id == model.Id);
+            if (country != null)
+            {
+                _context.Countries.Remove(country);
+                _context.SaveChanges();
+                return View(model);
+            }
+            return RedirectToAction("Index");
         }
     }
 }

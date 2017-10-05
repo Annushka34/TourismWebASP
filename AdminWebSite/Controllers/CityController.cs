@@ -48,6 +48,22 @@ namespace AdminWebSite.Controllers
         {
             if (ModelState.IsValid)
             {
+                Country isFindCountry = _context.Countries.Include(c=>c.Cities).SingleOrDefault(x => x.Id == model.CountryId);
+                if(isFindCountry != null)
+                {
+                    var cities = isFindCountry.Cities;
+                    City isFindCity = cities.SingleOrDefault(x => x.Name == model.Name);
+                    if (isFindCity != null)
+                    {
+                        ModelState.AddModelError("", "Нажаль таке місто вже існує - можливо ви помилились точкою на карті)....");
+                        model.Countries = _context.Countries.Select(x => new SelectItemViewModel
+                        {
+                            Id = x.Id,
+                            Name = x.Name
+                        }).ToList();
+                        return View(model);
+                    }
+                }
                 City city = new City
                 {
                     Name = model.Name,
